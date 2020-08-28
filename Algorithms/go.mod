@@ -1,4 +1,4 @@
-module github.com/aQuaYi/LeetCode-in-Go/Algorithms
+module github.com/mogu-echo/go-algorithm/Algorithms
 
 go 1.13
 

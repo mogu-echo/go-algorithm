@@ -1,6 +1,6 @@
 package problem0700
 
-import "github.com/aQuaYi/LeetCode-in-Go/kit"
+import "github.com/mogu-echo/go-algorithm/kit"
 
 /**
  * Definition for a binary tree node.

@@ -1,7 +1,7 @@
 package problem0222
 
 import (
-	"github.com/aQuaYi/LeetCode-in-Go/kit"
+	"github.com/mogu-echo/go-algorithm/kit"
 )
 
 // TreeNode is predefined in kit

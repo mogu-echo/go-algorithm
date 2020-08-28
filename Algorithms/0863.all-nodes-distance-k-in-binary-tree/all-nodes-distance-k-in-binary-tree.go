@@ -1,7 +1,7 @@
 package problem0863
 
 import (
-	"github.com/aQuaYi/LeetCode-in-Go/kit"
+	"github.com/mogu-echo/go-algorithm/kit"
 )
 
 /*TreeNode 是题目预定义的类型

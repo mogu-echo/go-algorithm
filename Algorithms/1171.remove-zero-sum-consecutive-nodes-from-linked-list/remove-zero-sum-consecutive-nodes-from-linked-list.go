@@ -1,6 +1,6 @@
 package problem1171
 
-import "github.com/aQuaYi/LeetCode-in-Go/kit"
+import "github.com/mogu-echo/go-algorithm/kit"
 
 // ListNode is ...
 type ListNode = kit.ListNode

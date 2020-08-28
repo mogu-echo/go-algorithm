@@ -1,7 +1,7 @@
 package problem0024
 
 import (
-	"github.com/aQuaYi/LeetCode-in-Go/kit"
+	"github.com/mogu-echo/go-algorithm/kit"
 )
 
 // ListNode is definition for singly-linked list

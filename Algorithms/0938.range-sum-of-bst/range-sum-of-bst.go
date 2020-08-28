@@ -1,6 +1,6 @@
 package problem0938
 
-import "github.com/aQuaYi/LeetCode-in-Go/kit"
+import "github.com/mogu-echo/go-algorithm/kit"
 
 // TreeNode is Definition for a binary tree node.
 type TreeNode = kit.TreeNode

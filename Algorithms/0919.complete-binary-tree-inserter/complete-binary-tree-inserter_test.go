@@ -3,7 +3,7 @@ package problem0919
 import (
 	"testing"
 
-	"github.com/aQuaYi/LeetCode-in-Go/kit"
+	"github.com/mogu-echo/go-algorithm/kit"
 
 	. "github.com/smartystreets/goconvey/convey"
 )

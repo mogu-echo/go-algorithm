@@ -3,7 +3,7 @@ package problem0987
 import (
 	"sort"
 
-	"github.com/aQuaYi/LeetCode-in-Go/kit"
+	"github.com/mogu-echo/go-algorithm/kit"
 )
 
 // TreeNode is pre-defined...

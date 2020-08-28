@@ -7,7 +7,7 @@ func sumSubarrayMins(A []int) int {
 	minOfA := 1             // 题目规定了 A[i]>=1
 	A = append(A, minOfA-1) // 加入低过 A 下限的值，是为了简化代码
 	// 以下是没有添加元素时候的代码，可以观察两者的区别
-	// https://github.com/aQuaYi/LeetCode-in-Go/blob/6122433cf04f1d9ab0925b3eddf2b6750c1ba3d1/Algorithms/0907.sum-of-subarray-minimums/sum-of-subarray-minimums.go
+	// https://github.com/mogu-echo/go-algorithm/blob/6122433cf04f1d9ab0925b3eddf2b6750c1ba3d1/Algorithms/0907.sum-of-subarray-minimums/sum-of-subarray-minimums.go
 
 	size := len(A)
 	sum := 0

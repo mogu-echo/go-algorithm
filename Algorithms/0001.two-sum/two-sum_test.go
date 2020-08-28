@@ -47,5 +47,6 @@ func Test_OK(t *testing.T) {
 	for _, q := range qs {
 		a, p := q.a, q.p
 		ast.Equal(a.one, twoSum(p.one, p.two), "输入:%v", p)
+		ast.Equal(a.one, twoSum2(p.one, p.two), "输入:%v", p)
 	}
 }

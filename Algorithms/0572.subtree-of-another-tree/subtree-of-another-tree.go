@@ -1,7 +1,7 @@
 package problem0572
 
 import (
-	"github.com/aQuaYi/LeetCode-in-Go/kit"
+	"github.com/mogu-echo/go-algorithm/kit"
 )
 
 type TreeNode = kit.TreeNode

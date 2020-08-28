@@ -2,7 +2,7 @@ package problem0102
 
 import (
 	"fmt"
-	"github.com/aQuaYi/LeetCode-in-Go/kit"
+	"github.com/mogu-echo/go-algorithm/kit"
 	"testing"
 
 	"github.com/stretchr/testify/assert"

@@ -1,7 +1,7 @@
 package problem0587
 
 import (
-	"github.com/aQuaYi/LeetCode-in-Go/kit"
+	"github.com/mogu-echo/go-algorithm/kit"
 )
 
 type Point = kit.Point
