@@ -41,3 +41,31 @@ func max(a, b int) int {
 	}
 	return b
 }
+
+type ResultType struct {
+	SinglePath, MaxPath int
+}
+
+func maxPathSum2(root *TreeNode) int {
+	result := helper(root)
+	return result.MaxPath
+}
+
+func helper(root *TreeNode) ResultType {
+	if root == nil {
+		return ResultType{
+			0, -(1 << 31),
+		}
+	}
+	left := helper(root.Left)
+	right := helper(root.Right)
+	result := ResultType{}
+	if left.SinglePath > right.SinglePath {
+		result.SinglePath = max(left.SinglePath+root.Val, 0)
+	} else {
+		result.SinglePath = max(right.SinglePath+root.Val, 0)
+	}
+	maxPath := max(right.MaxPath, left.MaxPath)
+	result.MaxPath = max(maxPath, left.SinglePath+right.SinglePath+root.Val)
+	return result
+}

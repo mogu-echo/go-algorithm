@@ -23,3 +23,24 @@ func recur(min, max int, root *TreeNode) bool {
 		recur(min, root.Val, root.Left) &&
 		recur(root.Val, max, root.Right)
 }
+
+func isValidBST2(root *TreeNode) bool {
+	result := inOrder(root)
+	for i := 0; i < len(result)-1; i++ {
+		if result[i] >= result[i+1] {
+			return false
+		}
+	}
+	return true
+}
+
+func inOrder(root *TreeNode) []int {
+	result := make([]int, 0)
+	if root == nil {
+		return result
+	}
+	result = append(result, inOrder(root.Left)...)
+	result = append(result, root.Val)
+	result = append(result, inOrder(root.Right)...)
+	return result
+}

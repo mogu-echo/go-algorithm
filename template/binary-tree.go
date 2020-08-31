@@ -118,30 +118,30 @@ func divideAndConquer(root *TreeNode) []int {
 }
 
 //BFS 层次遍历
-func levelOrder(root *TreeNode) [][]int {
-	result := make([][]int, 0)
-	if root == nil {
-		return result
-	}
-	queue := make([]*TreeNode, 0)
-	queue = append(queue, root)
-	for len(queue) > 0 {
-		list := make([]int, 0)
-		l := len(queue)
-		for i := 0; i < l; i++ {
-			level := queue[0]
-			queue = queue[1:]
-			if level.Left != nil {
-				queue = append(queue, level.Left)
-			}
-			if level.Right != nil {
-				queue = append(queue, level.Right)
-			}
-		}
-		result = append(result, list)
-	}
-	return result
-}
+// func levelOrder(root *TreeNode) [][]int {
+// 	result := make([][]int, 0)
+// 	if root == nil {
+// 		return result
+// 	}
+// 	queue := make([]*TreeNode, 0)
+// 	queue = append(queue, root)
+// 	for len(queue) > 0 {
+// 		list := make([]int, 0)
+// 		l := len(queue)
+// 		for i := 0; i < l; i++ {
+// 			level := queue[0]
+// 			queue = queue[1:]
+// 			if level.Left != nil {
+// 				queue = append(queue, level.Left)
+// 			}
+// 			if level.Right != nil {
+// 				queue = append(queue, level.Right)
+// 			}
+// 		}
+// 		result = append(result, list)
+// 	}
+// 	return result
+// }
 
 // 分治法应用
 // 先分别处理局部，再合并结果
@@ -262,21 +262,21 @@ func swap(nums []int, i, j int) {
 }
 
 // https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/
-func maxDepth(root *TreeNode) int {
-	// 返回条件处理
-	if root == nil {
-		return 0
-	}
-	// divide：分左右子树分别计算
-	left := maxDepth(root.Left)
-	right := maxDepth(root.Right)
+// func maxDepth(root *TreeNode) int {
+// 	// 返回条件处理
+// 	if root == nil {
+// 		return 0
+// 	}
+// 	// divide：分左右子树分别计算
+// 	left := maxDepth(root.Left)
+// 	right := maxDepth(root.Right)
 
-	// conquer：合并左右子树结果
-	if left > right {
-		return left + 1
-	}
-	return right + 1
-}
+// 	// conquer：合并左右子树结果
+// 	if left > right {
+// 		return left + 1
+// 	}
+// 	return right + 1
+// }
 
 // https://leetcode-cn.com/problems/balanced-binary-tree/
 func isBalanced(root *TreeNode) bool {
@@ -304,46 +304,46 @@ func maxDepth(root *TreeNode) int {
 }
 
 // https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/
-type ResultType struct {
-	SinglePath int // 保存单边最大值
-	MaxPath    int // 保存最大值（单边或者两个单边+根的值）
-}
+// type ResultType struct {
+// 	SinglePath int // 保存单边最大值
+// 	MaxPath    int // 保存最大值（单边或者两个单边+根的值）
+// }
 
-func maxPathSum(root *TreeNode) int {
-	result := helper(root)
-	return result.MaxPath
-}
-func helper(root *TreeNode) ResultType {
-	// check
-	if root == nil {
-		return ResultType{
-			SinglePath: 0,
-			MaxPath:    -(1 << 31),
-		}
-	}
-	// Divide
-	left := helper(root.Left)
-	right := helper(root.Right)
+// func maxPathSum(root *TreeNode) int {
+// 	result := helper(root)
+// 	return result.MaxPath
+// }
+// func helper(root *TreeNode) ResultType {
+// 	// check
+// 	if root == nil {
+// 		return ResultType{
+// 			SinglePath: 0,
+// 			MaxPath:    -(1 << 31),
+// 		}
+// 	}
+// 	// Divide
+// 	left := helper(root.Left)
+// 	right := helper(root.Right)
 
-	// Conquer
-	result := ResultType{}
-	// 求单边最大值
-	if left.SinglePath > right.SinglePath {
-		result.SinglePath = max(left.SinglePath+root.Val, 0)
-	} else {
-		result.SinglePath = max(right.SinglePath+root.Val, 0)
-	}
-	// 求两边加根最大值
-	maxPath := max(right.MaxPath, left.MaxPath)
-	result.MaxPath = max(maxPath, left.SinglePath+right.SinglePath+root.Val)
-	return result
-}
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
+// 	// Conquer
+// 	result := ResultType{}
+// 	// 求单边最大值
+// 	if left.SinglePath > right.SinglePath {
+// 		result.SinglePath = max(left.SinglePath+root.Val, 0)
+// 	} else {
+// 		result.SinglePath = max(right.SinglePath+root.Val, 0)
+// 	}
+// 	// 求两边加根最大值
+// 	maxPath := max(right.MaxPath, left.MaxPath)
+// 	result.MaxPath = max(maxPath, left.SinglePath+right.SinglePath+root.Val)
+// 	return result
+// }
+// func max(a, b int) int {
+// 	if a > b {
+// 		return a
+// 	}
+// 	return b
+// }
 
 // https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/
 func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
@@ -402,3 +402,176 @@ func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
 // 	}
 // 	return result
 // }
+
+// https://leetcode-cn.com/problems/binary-tree-level-order-traversal-ii/
+func levelOrderBottom(root *TreeNode) [][]int {
+	result := levelOrder(root)
+	// 翻转结果
+	reverse(result)
+	return result
+}
+func reverse(nums [][]int) {
+	for i, j := 0, len(nums)-1; i < j; i, j = i+1, j-1 {
+		nums[i], nums[j] = nums[j], nums[i]
+	}
+}
+func levelOrder(root *TreeNode) [][]int {
+	result := make([][]int, 0)
+	if root == nil {
+		return result
+	}
+	queue := make([]*TreeNode, 0)
+	queue = append(queue, root)
+	for len(queue) > 0 {
+		list := make([]int, 0)
+		// 为什么要取length？
+		// 记录当前层有多少元素（遍历当前层，再添加下一层）
+		l := len(queue)
+		for i := 0; i < l; i++ {
+			// 出队列
+			level := queue[0]
+			queue = queue[1:]
+			list = append(list, level.Val)
+			if level.Left != nil {
+				queue = append(queue, level.Left)
+			}
+			if level.Right != nil {
+				queue = append(queue, level.Right)
+			}
+		}
+		result = append(result, list)
+	}
+	return result
+}
+
+// https://leetcode-cn.com/problems/binary-tree-zigzag-level-order-traversal/
+func zigzagLevelOrder(root *TreeNode) [][]int {
+	result := make([][]int, 0)
+	if root == nil {
+		return result
+	}
+	queue := make([]*TreeNode, 0)
+	queue = append(queue, root)
+	toggle := false
+	for len(queue) > 0 {
+		list := make([]int, 0)
+		// 记录当前层有多少元素（遍历当前层，再添加下一层）
+		l := len(queue)
+		for i := 0; i < l; i++ {
+			// 出队列
+			level := queue[0]
+			queue = queue[1:]
+			list = append(list, level.Val)
+			if level.Left != nil {
+				queue = append(queue, level.Left)
+			}
+			if level.Right != nil {
+				queue = append(queue, level.Right)
+			}
+		}
+		if toggle {
+			reverse(list)
+		}
+		result = append(result, list)
+		toggle = !toggle
+	}
+	return result
+}
+
+func reverse(nums []int) {
+	for i := 0; i < len(nums)/2; i++ {
+		nums[i], nums[len(nums)-1-i] = nums[len(nums)-1-i], nums[i]
+	}
+}
+
+// https://leetcode-cn.com/problems/validate-binary-search-tree/
+// v1
+func isValidBST(root *TreeNode) bool {
+	result := make([]int, 0)
+	inOrder(root, &result)
+	// check order
+	for i := 0; i < len(result)-1; i++ {
+		if result[i] >= result[i+1] {
+			return false
+		}
+	}
+	return true
+}
+
+func inOrder(root *TreeNode, result *[]int) {
+	if root == nil {
+		return
+	}
+	inOrder(root.Left, result)
+	*result = append(*result, root.Val)
+	inOrder(root.Right, result)
+}
+
+// v2分治法
+type ResultType struct {
+	IsValid bool
+	// 记录左右两边最大最小值，和根节点进行比较
+	Max *TreeNode
+	Min *TreeNode
+}
+
+func isValidBST2(root *TreeNode) bool {
+	result := helper(root)
+	return result.IsValid
+}
+func helper(root *TreeNode) ResultType {
+	result := ResultType{}
+	// check
+	if root == nil {
+		result.IsValid = true
+		return result
+	}
+
+	left := helper(root.Left)
+	right := helper(root.Right)
+
+	if !left.IsValid || !right.IsValid {
+		result.IsValid = false
+		return result
+	}
+	if left.Max != nil && left.Max.Val >= root.Val {
+		result.IsValid = false
+		return result
+	}
+	if right.Min != nil && right.Min.Val <= root.Val {
+		result.IsValid = false
+		return result
+	}
+
+	result.IsValid = true
+	// 如果左边还有更小的3，就用更小的节点，不用4
+	//  5
+	// / \
+	// 1   4
+	//      / \
+	//     3   6
+	result.Min = root
+	if left.Min != nil {
+		result.Min = left.Min
+	}
+	result.Max = root
+	if right.Max != nil {
+		result.Max = right.Max
+	}
+	return result
+}
+
+// https://leetcode-cn.com/problems/insert-into-a-binary-search-tree/
+// DFS查找插入位置
+func insertIntoBST(root *TreeNode, val int) *TreeNode {
+	if root == nil {
+		root = &TreeNode{Val: val}
+		return root
+	}
+	if root.Val > val {
+		root.Left = insertIntoBST(root.Left, val)
+	} else {
+		root.Right = insertIntoBST(root.Right, val)
+	}
+	return root
+}

@@ -20,7 +20,7 @@ func recur(root *TreeNode) (int, bool) {
 	rightDepth, rightIsBalanced := recur(root.Right)
 
 	if leftIsBalanced && rightIsBalanced &&
-		-1 <= leftDepth-rightDepth  && leftDepth - rightDepth <= 1 {
+		-1 <= leftDepth-rightDepth && leftDepth-rightDepth <= 1 {
 		return max(leftDepth, rightDepth) + 1, true
 	}
 
