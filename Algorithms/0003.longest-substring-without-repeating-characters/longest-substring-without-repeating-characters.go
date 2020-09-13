@@ -2,9 +2,7 @@ package problem0003
 
 func lengthOfLongestSubstring(s string) int {
 	// location[s[i]] == j 表示：
-	// s中第i个字符串，上次出现在s的j位置，所以，在s[j+1:i]中没有s[i]
-	// location[s[i]] == -1 表示： s[i] 在s中第一次出现
-	location := [256]int{} // 只有256长是因为，假定输入的字符串只有ASCII字符
+	// s中第i个字符串，上次出现在s的j位置，所以，在s[j+1:i]中没有s[i] // location[s[i]] == -1 表示： s[i] 在s中第一次出现 location := [256]int{} // 只有256长是因为，假定输入的字符串只有ASCII字符
 	for i := range location {
 		location[i] = -1 // 先设置所有的字符都没有见过
 	}
@@ -24,4 +22,32 @@ func lengthOfLongestSubstring(s string) int {
 	}
 
 	return maxLen
+}
+
+func lengthOfLongestSubstring2(s string) int {
+	if len(s) == 0 {
+		return 0
+	}
+	win := make(map[byte]int)
+	left, right := 0, 0
+	ans := 1
+	for right < len(s) {
+		c := s[right]
+		right++
+		win[c]++
+		for win[c] > 1 {
+			d := s[left]
+			left++
+			win[d]--
+		}
+		ans = max(right-left, ans)
+	}
+	return ans
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }

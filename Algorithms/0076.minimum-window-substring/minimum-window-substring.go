@@ -1,5 +1,7 @@
 package problem0076
 
+import "math"
+
 func minWindow(s string, t string) string {
 	have := [128]int{}
 	need := [128]int{}
@@ -38,4 +40,45 @@ func minWindow(s string, t string) string {
 	}
 
 	return res
+}
+
+func minWindow2(s string, t string) string {
+	win := make(map[byte]int)
+	need := make(map[byte]int)
+	for i := 0; i < len(t); i++ {
+		need[t[i]]++
+	}
+	left, right := 0, 0
+	start, end := 0, 0
+	match, min := 0, math.MaxInt64
+	var c byte
+	for right < len(s) {
+		c = s[right]
+		right++
+		if need[c] != 0 {
+			win[c]++
+			if win[c] == need[c] {
+				match++
+			}
+		}
+		for match == len(need) {
+			if right-left < min {
+				min = right - left
+				start = left
+				end = right
+			}
+			c = s[left]
+			left++
+			if need[c] != 0 {
+				if win[c] == need[c] {
+					match--
+				}
+			}
+			win[c]--
+		}
+	}
+	if min == math.MaxInt64 {
+		return ""
+	}
+	return s[start:end]
 }

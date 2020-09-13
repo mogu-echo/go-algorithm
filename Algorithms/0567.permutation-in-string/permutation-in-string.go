@@ -32,3 +32,36 @@ func checkInclusion(s1 string, s2 string) bool {
 
 	return false
 }
+
+func chechInclusion2(s1 string, s2 string) bool {
+	win, need := make(map[byte]int), make(map[byte]int)
+	for i := 0; i < len(i); i++ {
+		need[s1[i]]++
+	}
+	left, right := 0, 0
+	match := 0
+	for right < len(s2) {
+		c := s2[right]
+		right++
+		if need[c] != 0 {
+			win[c]++
+			if need[c] == win[c] {
+				match++
+			}
+		}
+		for right-left >= len(s1) {
+			if match == len(s1) {
+				return true
+			}
+			d := s2[left]
+			left++
+			if need[d] != 0 {
+				if need[d] == win[d] {
+					match--
+				}
+				win[d]--
+			}
+		}
+	}
+	return false
+}
